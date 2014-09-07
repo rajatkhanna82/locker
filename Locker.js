@@ -50,9 +50,19 @@ Locker.prototype.addBags = function(bagSize) {
 /* Meathod : returnBags 
  * Arguments : ticketNo (string) '0:23' represemted as typeOrder:BoxNo    
  * description : locates the box checks if it occupied and marks it as returned
- * return : (string) ticket no. or message Lockers are full
+ * return : (string) Box size and box no. 
 */
 Locker.prototype.returnBag = function(ticketNo) {
   var ticket = ticketNo.split(':');
-  
+  var boxType = parseInt(ticket[0]);
+  var boxNo = parseInt(ticket[1]);
+
+  if(boxType <0 || boxType >= this._sizes.length || 
+    boxNo <1 || boxNo > this._sizes[boxType].qty || 
+    !this._lokerBoxes[this._sizes[boxType].type][boxNo]){
+    
+    return "Invalid ticket no."
+  }
+  this._lokerBoxes[this._sizes[boxType].type][boxNo] = false;
+  return 'Size : '+ this._sizes[boxType].type + 'Box No. : ' + boxNo;
 };
