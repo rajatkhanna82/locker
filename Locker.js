@@ -6,7 +6,7 @@
 */
 var Locker = function (sizes) {
   // Model data for locker boxes state true for occupied and false for empty
-  this._lokerBoxes = {};
+  this._lockerBoxes = {};
   // size and qty of that size boxes 
   this._sizes = sizes || [{type :'small'  , qty : 1000 },
                           {type: 'medium' , qty : 1000 },
@@ -14,8 +14,8 @@ var Locker = function (sizes) {
   // init all boxes to empty
   for(var size =0; size < this._sizes.length; size++) {
     for(var i = 1; i <= this._sizes[size].qty; i++) {
-      this._lokerBoxes[this._sizes[size].type] = {}
-      this._lokerBoxes[this._sizes[size].type][i] = false;
+      this._lockerBoxes[this._sizes[size].type] = {}
+      this._lockerBoxes[this._sizes[size].type][i] = false;
     }
   }
 
@@ -33,8 +33,8 @@ Locker.prototype.addBags = function(bagSize) {
   }
   // Locate the next empty box in the lockers of bagSize
   for (var i = 1; i <= this._sizes[bagSize].qty; i++) {
-    if(!this._lokerBoxes[this._sizes[bagSize].type][i]) {
-      this._lokerBoxes[this._sizes[bagSize].type][i] = true;
+    if(!this._lockerBoxes[this._sizes[bagSize].type][i]) {
+      this._lockerBoxes[this._sizes[bagSize].type][i] = true;
       return bagSize+':'+i;
     }
   };
@@ -60,10 +60,10 @@ Locker.prototype.returnBag = function(ticketNo) {
   var boxNo = parseInt(ticket[1]);
   if(boxType <0 || boxType >= this._sizes.length || !this._sizes[boxType] ||
     boxNo <1 ||  boxNo > this._sizes[boxType].qty || 
-    !this._lokerBoxes[this._sizes[boxType].type][boxNo]){
+    !this._lockerBoxes[this._sizes[boxType].type][boxNo]){
     
     return "Invalid ticket no."
   }
-  this._lokerBoxes[this._sizes[boxType].type][boxNo] = false;
+  this._lockerBoxes[this._sizes[boxType].type][boxNo] = false;
   return 'Size : '+ this._sizes[boxType].type + 'Box No. : ' + boxNo;
 };
