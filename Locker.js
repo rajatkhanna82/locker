@@ -27,7 +27,7 @@ var Locker = function (sizes) {
 */
 Locker.prototype.addBags = function(bagSize) {
   // Check validity of the bag size
-  if(!bagSize || bagSize < 0 || bagSize >= this._sizes.length) {
+  if(bagSize < 0 || bagSize >= this._sizes.length) {
     console.warn("invalid bag size");
     return "invalid bag size";
   }
@@ -35,7 +35,7 @@ Locker.prototype.addBags = function(bagSize) {
   for (var i = 1; i <= this._sizes[bagSize].qty; i++) {
     if(!this._lockerBoxes[this._sizes[bagSize].type][i]) {
       this._lockerBoxes[this._sizes[bagSize].type][i] = true;
-      return bagSize+':'+i;
+      return 'Ticket No. : '+ bagSize+':'+i;
     }
   };
   // if all the boxes of bagSize are occupied then add the bag in the next size
