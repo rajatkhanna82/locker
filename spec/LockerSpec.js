@@ -9,27 +9,28 @@ describe("Locker", function() {
     it("should be able to add bag of size small", function() {
 
       var message = locker.addBags(boxSizes.small);
+
       expect(locker._lockerBoxes.small[1]).toEqual(true);
-      expect(message).toEqual('0:1');
+      expect(message).toEqual('Ticket No. : 0:1');
     });
      it("should be able to add bag of size medium", function() {
 
       var message = locker.addBags(boxSizes.medium);
       expect(locker._lockerBoxes.medium[1]).toEqual(true);
-      expect(message).toEqual('1:1');
+      expect(message).toEqual('Ticket No. : 1:1');
     });
      it("should be able to add bag of size large", function() {
 
       var message = locker.addBags(boxSizes.large);
       expect(locker._lockerBoxes.large[1]).toEqual(true);
-      expect(message).toEqual('2:1');
+      expect(message).toEqual('Ticket No. : 2:1');
     });
     it("should be able to add 1000 bags size small", function() {
       var message;
       for(var i = 1; i <=1000 ; i++ ) {
         message = locker.addBags(boxSizes.small);
         expect(locker._lockerBoxes.small[i]).toEqual(true);
-        expect(message).toEqual('0:'+i);
+        expect(message).toEqual('Ticket No. : 0:'+i);
         
       }
     });
@@ -38,12 +39,12 @@ describe("Locker", function() {
       for(var i = 1; i <=1000 ; i++ ) {
         message = locker.addBags(boxSizes.small);
         expect(locker._lockerBoxes.small[i]).toEqual(true);
-        expect(message).toEqual('0:'+i);
+        expect(message).toEqual('Ticket No. : 0:'+i);
       }
         message = locker.addBags(boxSizes.small);
         console.log(message);
         expect(locker._lockerBoxes.medium[1]).toEqual(true);
-        expect(message).toEqual('1:'+1);
+        expect(message).toEqual('Ticket No. : 1:'+1);
 
     });
     it("should be able to add 1000 bags size medium", function() {
@@ -51,7 +52,7 @@ describe("Locker", function() {
       for(var i = 1; i <=1000 ; i++ ) {
         message = locker.addBags(boxSizes.medium);
         expect(locker._lockerBoxes.medium[i]).toEqual(true);
-        expect(message).toEqual('1:'+i);
+        expect(message).toEqual('Ticket No. : 1:'+i);
         
       }
     });
@@ -60,11 +61,11 @@ describe("Locker", function() {
       for(var i = 1; i <=1000 ; i++ ) {
         message = locker.addBags(boxSizes.medium);
         expect(locker._lockerBoxes.medium[i]).toEqual(true);
-        expect(message).toEqual('1:'+i);
+        expect(message).toEqual('Ticket No. : 1:'+i);
       }
         message = locker.addBags(boxSizes.medium);
         expect(locker._lockerBoxes.large[1]).toEqual(true);
-        expect(message).toEqual('2:'+1);
+        expect(message).toEqual('Ticket No. : 2:'+1);
 
     });
     it("should be able to add 1000 bags size large", function() {
@@ -72,7 +73,7 @@ describe("Locker", function() {
       for(var i = 1; i <=1000 ; i++ ) {
         message = locker.addBags(boxSizes.medium);
         expect(locker._lockerBoxes.medium[i]).toEqual(true);
-        expect(message).toEqual('1:'+i);
+        expect(message).toEqual('Ticket No. : 1:'+i);
         
       }
     });
@@ -81,7 +82,7 @@ describe("Locker", function() {
       for(var i = 1; i <=1000 ; i++ ) {
         message = locker.addBags(boxSizes.large);
         expect(locker._lockerBoxes.large[i]).toEqual(true);
-        expect(message).toEqual('2:'+i);
+        expect(message).toEqual('Ticket No. : 2:'+i);
       }
         message = locker.addBags(boxSizes.large);
         expect(message).toEqual('Lockers are full');
