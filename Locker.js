@@ -12,8 +12,9 @@ var Locker = function (sizes) {
                           {type: 'medium' , qty : 1000 },
                           {type: 'large' , qty :1000} ];
   // init all boxes to empty
-  for(var size =0; this._sizes.length; size++) {
+  for(var size =0; size < this._sizes.length; size++) {
     for(var i = 1; i <= this._sizes[size].qty; i++) {
+      this._lokerBoxes[this._sizes[size].type] = {}
       this._lokerBoxes[this._sizes[size].type][i] = false;
     }
   }
@@ -33,6 +34,7 @@ Locker.prototype.addBags = function(bagSize) {
   // Locate the next empty box in the lockers of bagSize
   for (var i = 1; i <= this._sizes[bagSize].qty; i++) {
     if(!this._lokerBoxes[this._sizes[bagSize].type][i]) {
+      this._lokerBoxes[this._sizes[bagSize].type][i] = true;
       return bagSize+':'+i;
     }
   };
@@ -56,9 +58,8 @@ Locker.prototype.returnBag = function(ticketNo) {
   var ticket = ticketNo.split(':');
   var boxType = parseInt(ticket[0]);
   var boxNo = parseInt(ticket[1]);
-
-  if(boxType <0 || boxType >= this._sizes.length || 
-    boxNo <1 || boxNo > this._sizes[boxType].qty || 
+  if(boxType <0 || boxType >= this._sizes.length || !this._sizes[boxType] ||
+    boxNo <1 ||  boxNo > this._sizes[boxType].qty || 
     !this._lokerBoxes[this._sizes[boxType].type][boxNo]){
     
     return "Invalid ticket no."
